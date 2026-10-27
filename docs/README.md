@@ -10,7 +10,7 @@ irm https://raw.githubusercontent.com/Masoudalk/hermes-operator-kit/v1.0.0/insta
 
 ## VERIFY_BEFORE_RUN
 
-SHA256 of install.ps1 (v1.0.0): (to be filled after tag push)
+SHA256 of install.ps1 (v1.0.0): 77b79c7c952d5d6e47cfd6af709a9728c7fac6c02aa8bcceade9a7316d513eca
 
 One-line install command:
 ```
