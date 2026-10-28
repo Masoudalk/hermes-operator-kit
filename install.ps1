@@ -17,11 +17,11 @@ foreach ($d in @($libDir, $rulesDir, $configDir, $policiesDir, $memoryDir)) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Path $d -Force | Out-Null }
 }
 
-# Copy kit files (idempotent)
-Copy-Item -Path (Join-Path $ScriptDir "lib\*") -Destination $libDir -Recurse -Force
-Copy-Item -Path (Join-Path $ScriptDir "rules\*") -Destination $rulesDir -Recurse -Force
-Copy-Item -Path (Join-Path $ScriptDir "config\*") -Destination $configDir -Recurse -Force
-Copy-Item -Path (Join-Path $ScriptDir "policies\*") -Destination $policiesDir -Recurse -Force
+# Copy kit files (idempotent) — repository layout is kit/lib, kit/rules, kit/config, kit/policies
+Copy-Item -Path (Join-Path $ScriptDir "kit\lib\*") -Destination $libDir -Recurse -Force
+Copy-Item -Path (Join-Path $ScriptDir "kit\rules\*") -Destination $rulesDir -Recurse -Force
+Copy-Item -Path (Join-Path $ScriptDir "kit\config\*") -Destination $configDir -Recurse -Force
+Copy-Item -Path (Join-Path $ScriptDir "kit\policies\*") -Destination $policiesDir -Recurse -Force
 Copy-Item -Path (Join-Path $ScriptDir "memory\HANDOFF.md") -Destination $memoryDir -Force
 
 Write-Host "Installation complete." -ForegroundColor Green
