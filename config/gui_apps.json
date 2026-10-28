@@ -1,0 +1,7 @@
+{
+  "notepad": {
+    "name": "Notepad",
+    "exe": "C:/Windows/System32/notepad.exe",
+    "process": "notepad.exe"
+  }
+}

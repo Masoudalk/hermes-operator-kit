@@ -113,12 +113,41 @@ def close_app_windows(app_name, process_name, timeout=8.0, log_func=None):
         return False, pids[0], "NO_VISIBLE_WINDOW"
     start = time.time()
     while time.time() - start < timeout:
-        if not app_pids(process_name):
+        alive = app_pids(process_name)
+        if not alive:
             if log_func:
                 log_func(app_name + " CLOSED", pids[0], "win_app_ops.close")
             return True, pids[0], "CLOSED"
+        if time.time() - start > 1.0:
+            for pid in alive:
+                _click_discard_in_dialogs(pid)
         time.sleep(0.25)
     return False, pids[0], "STILL_OPEN"
+
+
+def _click_discard_in_dialogs(pid):
+    import ctypes
+    from ctypes import wintypes
+    BM_CLICK = 0x00F5
+    DISCARD_LABELS = ("عدم الحفظ", "لا تحفظ", "Don't Save", "Don't save", "Do not Save")
+    clicked = 0
+    Proc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+    for hwnd, vis, icon in toplevel_windows(pid):
+        children = []
+        def cb(h, lp):
+            children.append(h)
+            return True
+        user32.EnumChildWindows(hwnd, Proc(cb), 0)
+        for ch in children:
+            n = user32.GetWindowTextLengthW(ch)
+            if 0 < n <= 64:
+                buf = ctypes.create_unicode_buffer(n + 1)
+                user32.GetWindowTextW(ch, buf, n + 1)
+                t = buf.value.strip()
+                if any(t == lab or t.startswith(lab) for lab in DISCARD_LABELS):
+                    user32.PostMessageW(ch, BM_CLICK, 0, 0)
+                    clicked += 1
+    return clicked
 
 
 def set_clipboard_text(text):

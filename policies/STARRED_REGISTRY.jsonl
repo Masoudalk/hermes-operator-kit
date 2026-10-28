@@ -1,0 +1,20 @@
+{"name":"omniroute","layer":"ECON","tier":"S","role":"بوابة موحدة متعددة المزودين بتوجيه وسياسات وكاش","rule":"كل استدعاء نموذج يمر عبرها","install":"npm install -g omniroute","verified":false}
+{"name":"agent-reach","layer":"WORLD","tier":"S","role":"قنوات منصات مسوّرة وفيديو وصينية","rule":"قراءة فقط؛ مفاتيح عبر configure في الطرفية","install":"see install.md الرسمي","verified":false}
+{"name":"repomix","layer":"CTX","tier":"S","role":"حزم مستودع بملف واحد صالح للـLLM","rule":"للنقل بين harnesses لا للإبقاء الدائم","install":"npx repomix","verified":false}
+{"name":"graphify","layer":"CTX","tier":"S","role":"knowledge graph للكودبيس بلا vector store","rule":"استعلم مساراً قبل قراءة ملفات","install":"npm install -g graphify","verified":false}
+{"name":"hindsight","layer":"MEM","tier":"S","role":"ذاكرة وكيل متعلمة عبر الجلسات","rule":"لا تغني عن handoff.md كسجل تسليم","install":"npm install -g hindsight","verified":false}
+{"name":"tokscale","layer":"ECON","tier":"S","role":"قياس tokens عبر الوكلاء","rule":"قرار إضافة/حذف أداة يتطلب رقماً منها","install":"npm install -g tokscale","verified":false}
+{"name":"agents.md","layer":"SKILL","tier":"S","role":"تنسيق مفتوح لتحويل مهارات Claude إلى أي harness","rule":"اختبار على نموذجين من عائلتين قبل الاعتماد","install":"copy to AGENTS.md","verified":false}
+{"name":"ponytail","layer":"SKILL","tier":"S","role":"اقتضاب مخرجات العمل الآلي","rule":"قياس رباعي المحاور؛ رفض إن ارتفعت tokens","install":"npm install -g ponytail","verified":false}
+{"name":"humanizer","layer":"SKILL","tier":"S","role":"إزالة بصمات الكتابة الآلية","rule":"للمخرجات البشرية فقط","install":"npm install -g humanizer","verified":false}
+{"name":"freellmapi","layer":"ECON","tier":"A","role":"7.4B tokens/شهر، 34 مزوداً","rule":"خلف omniroute كطبقة مجانية","install":"see docs","verified":false}
+{"name":"freebuff","layer":"ECON","tier":"A","role":"وكيل مجاني ممول بالإعلانات","rule":"ثمنه انتباه وخصوصية لا نقد","install":"npm install -g freebuff","verified":false}
+{"name":"LiveAgent","layer":"ORCH","tier":"A","role":"سطح وكيل local-first متعدد النماذج","rule":"مفاتيح تبقى على الجهاز","install":"see docs","verified":false}
+{"name":"mission-control","layer":"ORCH","tier":"S","role":"plane تحكم مستضاف ذاتياً","rule":"توزيع ومراجعة وإنفاق","install":"self-hosted","verified":false}
+{"name":"databasement","layer":"INFRA","tier":"S","role":"مدير نسخ احتياطي لقواعد البيانات","rule":"نسخة مستعادة بنجاح = معيار خروج","install":"see docs","verified":false}
+{"name":"OfficeCLI","layer":"INFRA","tier":"S","role":"suite مكتبية للوكلاء بلا Office","rule":"binary واحدة","install":"download release","verified":false}
+{"name":"termux","layer":"MOB","tier":"S","role":"طرفية وخادم X على Android","rule":"أساس مختبر الموبايل","install":"F-Droid","verified":false}
+{"name":"strix","layer":"GOV","tier":"A","role":"اختبار اختراق AI مفتوح","rule":"تدقيق ذاتي دوري","install":"see docs","verified":false}
+{"name":"obscura","layer":"WORLD","tier":"B","role":"متصفح headless للوكلاء","rule":"مختبر شبكي معزول فقط","install":"see docs","verified":false}
+{"name":"T3MP3ST","layer":"GOV","tier":"B","role":"منصة red teaming هجومية","rule":"مختبر شبكي معزول فقط","install":"see docs","verified":false}
+{"name":"qwencloud-generator","layer":"GOV","tier":"X","role":"حصاد مفاتيح بتسجيل آلي","rule":"ممنوع صراحة","install":"DO NOT INSTALL","verified":true}
