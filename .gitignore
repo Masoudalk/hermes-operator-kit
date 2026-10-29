@@ -10,11 +10,11 @@ __pycache__/
 # Hermes runtime
 .hermes/
 
-# Logs and tmp - track directories but ignore contents
-logs/
-!logs/.gitkeep
-tmp/
-!tmp/.gitkeep
+# Logs and tmp at root - track directories but ignore contents
+/logs/
+!/logs/.gitkeep
+/tmp/
+!/tmp/.gitkeep
 
 # Backups
 *.bak-*
