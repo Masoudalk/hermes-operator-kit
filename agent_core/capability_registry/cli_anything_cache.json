@@ -1,0 +1,14 @@
+{
+  "cli_anything_obs_studio": {
+    "tool_id": "cli_anything_obs_studio",
+    "cli_name": "cli-anything-obs-studio",
+    "executable": "C:\\Users\\MA\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\cli-anything-obs-studio.exe",
+    "capabilities": [
+      "launch",
+      "inspect",
+      "interact"
+    ],
+    "version": "1.0.0",
+    "install_method": "cli-hub"
+  }
+}
