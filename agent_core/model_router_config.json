@@ -1,20 +1,19 @@
 {
   "roles": {
     "planning": {
-      "provider": "custom",
-      "model": "masoud-auto",
-      "base_url": "http://127.0.0.1:20128/v1",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
       "temperature": 0.3,
       "max_tokens": 4000,
       "fallback": [
-        "gemini-3.6-flash",
-        "nemotron-3-ultra-550b"
+        "nvidia/ising-calibration-1.5-31b"
       ]
     },
     "coding": {
-      "provider": "custom",
-      "model": "masoud-auto",
-      "base_url": "http://127.0.0.1:20128/v1",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
       "temperature": 0.2,
       "max_tokens": 8000,
       "fallback": [
