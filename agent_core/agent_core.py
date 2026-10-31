@@ -135,7 +135,7 @@ class ModelRouter:
                 },
                 "verification": {
                     "provider": "custom",
-                    "model": "ising-calibration-1.5-31b",
+                    "model": "nvidia/ising-calibration-1.5-31b",
                     "base_url": "http://127.0.0.1:20128/v1",
                     "temperature": 0.0,
                     "max_tokens": 500,
@@ -143,7 +143,7 @@ class ModelRouter:
                 },
                 "fast": {
                     "provider": "custom",
-                    "model": "ising-calibration-1.5-31b",
+                    "model": "nvidia/ising-calibration-1.5-31b",
                     "base_url": "http://127.0.0.1:20128/v1",
                     "temperature": 0.0,
                     "max_tokens": 1000,
@@ -167,6 +167,48 @@ class ModelRouter:
     def get_model_for_role(self, role: str) -> Dict[str, Any]:
         """Get model configuration for a role."""
         return self.config["roles"].get(role, self.config["roles"]["fast"])
+    
+    def call_model(self, role: str, messages: list, **kwargs) -> Any:
+        """Call a model using Hermes call_llm with role-based configuration."""
+        import sys
+        sys.path.insert(0, 'C:/Users/MA/AppData/Local/hermes/hermes-agent')
+        from agent.auxiliary_client import call_llm
+        
+        config = self.get_model_for_role(role)
+        timeout = kwargs.pop('timeout', self.config.get('defaults', {}).get('timeout', 120))
+        
+        try:
+            response = call_llm(
+                task=role,
+                provider=config.get('provider'),
+                model=config.get('model'),
+                base_url=config.get('base_url'),
+                messages=messages,
+                temperature=config.get('temperature', 0.3),
+                max_tokens=config.get('max_tokens', 4000),
+                timeout=timeout,
+                **kwargs
+            )
+            return response
+        except Exception as e:
+            # Try fallback models
+            for fallback_model in config.get('fallback', []):
+                try:
+                    response = call_llm(
+                        task=role,
+                        provider=config.get('provider'),
+                        model=fallback_model,
+                        base_url=config.get('base_url'),
+                        messages=messages,
+                        temperature=config.get('temperature', 0.3),
+                        max_tokens=config.get('max_tokens', 4000),
+                        timeout=timeout,
+                        **kwargs
+                    )
+                    return response
+                except Exception:
+                    continue
+            raise Exception(f"All models failed for role {role}: {e}")
     
     def save_config(self):
         self.config_path.parent.mkdir(parents=True, exist_ok=True)
