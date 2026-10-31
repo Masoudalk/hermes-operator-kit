@@ -1,0 +1,2168 @@
+{
+  "version": "1.0",
+  "tools": [
+    {
+      "tool_id": "cli.winver",
+      "name": "Windows Version",
+      "description": "Display Windows version information",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [
+        "winver.exe"
+      ],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "exit_code",
+        "output_parsing"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "cli.charmap",
+      "name": "Character Map",
+      "description": "Open Windows Character Map utility",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "launch",
+        "inspect"
+      ],
+      "supported_applications": [
+        "charmap.exe"
+      ],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "pid_tracking",
+        "window_verify"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.98,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "cli.notepad",
+      "name": "Notepad",
+      "description": "Open Windows Notepad",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "launch",
+        "interact",
+        "verify"
+      ],
+      "supported_applications": [
+        "notepad.exe"
+      ],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "pid_tracking",
+        "window_verify",
+        "clipboard_sentinel"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "uia.enumerate_windows",
+      "name": "Enumerate Windows",
+      "description": "Enumerate all visible windows with metadata",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "windows": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cross_reference_pid",
+        "foreground_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.92,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "uia.focus_window",
+      "name": "Focus Window",
+      "description": "Focus/activate a window by HWND",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "hwnd": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hwnd"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "hwnd": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "foreground_check",
+        "screenshot_verify"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "uia.get_foreground",
+      "name": "Get Foreground Window",
+      "description": "Get the currently active foreground window",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "hwnd": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "process_name": {
+            "type": "string"
+          },
+          "process_id": {
+            "type": "integer"
+          },
+          "bounds": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cross_reference_pid"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "bridge.capture_desktop",
+      "name": "Capture Full Desktop",
+      "description": "Capture full desktop screenshot via Desktop Bridge",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "full_desktop",
+              "window",
+              "region"
+            ]
+          },
+          "window_title": {
+            "type": "string"
+          },
+          "region": {
+            "type": "object"
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "image_data": {
+            "type": "string",
+            "format": "binary"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "format": {
+            "type": "string"
+          },
+          "size_bytes": {
+            "type": "integer"
+          },
+          "capture_time_ms": {
+            "type": "number"
+          },
+          "validation": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "capture",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "desktop_bridge",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "image_validation",
+        "black_pixel_check",
+        "color_count"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/desktop_bridge.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "bridge.window_enumerate",
+      "name": "Bridge Window Enumerate",
+      "description": "Enumerate windows via Desktop Bridge",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "windows": {
+            "type": "array"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "desktop_bridge",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cross_reference_uia"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/desktop_bridge.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "bridge.window_focus",
+      "name": "Bridge Window Focus",
+      "description": "Focus window via Desktop Bridge",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "hwnd": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hwnd"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "hwnd": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "desktop_bridge",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "screenshot_verify",
+        "foreground_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/desktop_bridge.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "bridge.capture_window",
+      "name": "Bridge Capture Window",
+      "description": "Capture specific window via Desktop Bridge",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window_title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window_title"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "image_data": {
+            "type": "string",
+            "format": "binary"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "format": {
+            "type": "string"
+          },
+          "size_bytes": {
+            "type": "integer"
+          },
+          "capture_time_ms": {
+            "type": "number"
+          },
+          "validation": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "capture",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "desktop_bridge",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "image_validation",
+        "black_pixel_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/desktop_bridge.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "input.click",
+      "name": "Mouse Click",
+      "description": "Real mouse click at coordinates",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "button": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "middle"
+            ],
+            "default": "left"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "position": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "screenshot_verify",
+        "cursor_position_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.85,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "input.type_text",
+      "name": "Type Text via Clipboard",
+      "description": "Type text using clipboard paste (clipboard sentinel verification)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 10000
+          },
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "match": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_sentinel",
+        "clipboard_verify"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.98,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "input.verify_text",
+      "name": "Verify Text via Clipboard",
+      "description": "Verify text in editor via clipboard sentinel pattern",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "expected": {
+            "type": "string",
+            "maxLength": 10000
+          },
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected",
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "match": {
+            "type": "boolean"
+          },
+          "read": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_sentinel"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "input.clear_editor",
+      "name": "Clear Editor",
+      "description": "Clear editor content (Ctrl+A, Delete)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_sentinel"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "vision.analyze_screenshot",
+      "name": "Analyze Screenshot with Vision Model",
+      "description": "Analyze screenshot using NVIDIA vision model",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "image_path",
+          "question"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number"
+          }
+        }
+      },
+      "capabilities": [
+        "capture",
+        "verify",
+        "research"
+      ],
+      "supported_applications": [],
+      "backend": "screenshot_vision",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 60,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cross_reference_ocr",
+        "human_review"
+      ],
+      "rollback_capable": false,
+      "test_status": "partial",
+      "reliability_score": 0.6,
+      "source_file": "lib/vision_layer.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "ocr.tesseract",
+      "name": "Tesseract OCR",
+      "description": "Local OCR via Tesseract",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "default": "eng+ara"
+          }
+        },
+        "required": [
+          "image_path"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number"
+          }
+        }
+      },
+      "capabilities": [
+        "capture",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "ocr",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [
+        "tesseract",
+        "pytesseract"
+      ],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cross_reference_vision"
+      ],
+      "rollback_capable": false,
+      "test_status": "untested",
+      "reliability_score": 0.5,
+      "source_file": "lib/vision_layer.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "fs.read_file",
+      "name": "Read File",
+      "description": "Read file contents",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "default": 1
+          },
+          "limit": {
+            "type": "integer",
+            "default": 2000
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "total_lines": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "file_ops"
+      ],
+      "supported_applications": [],
+      "backend": "filesystem",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "content_hash",
+        "line_count"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 1.0,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "fs.write_file",
+      "name": "Write File",
+      "description": "Write file contents",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "file_ops"
+      ],
+      "supported_applications": [],
+      "backend": "filesystem",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "content_hash",
+        "read_back"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "cli_anything.obs_studio",
+      "name": "OBS Studio CLI",
+      "description": "OBS Studio CLI adapter (via CLI-Anything)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object"
+      },
+      "capabilities": [
+        "launch",
+        "interact",
+        "inspect"
+      ],
+      "supported_applications": [
+        "obs-studio"
+      ],
+      "backend": "cli_anything",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "json_output",
+        "status_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "untested",
+      "reliability_score": 0.0,
+      "source_file": "lib/cli_anything_adapter.py",
+      "created_at": "2026-10-31T01:37:54.624093",
+      "updated_at": "2026-10-31T01:37:54.624093"
+    },
+    {
+      "tool_id": "ctl.list_apps",
+      "name": "List Applications",
+      "description": "List all registered applications in gui_apps.json",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "apps": {
+            "type": "array"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "output_parsing"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "ctl.status",
+      "name": "Check App Status",
+      "description": "Check if an application is running",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "running": {
+            "type": "boolean"
+          },
+          "pids": {
+            "type": "array"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "pid_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.98,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "ctl.launch",
+      "name": "Launch Application",
+      "description": "Launch a registered application safely",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "pid": {
+            "type": "integer"
+          },
+          "focused": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "launch",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 15,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "pid_tracking",
+        "window_verify",
+        "focus_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "ctl.close",
+      "name": "Close Application",
+      "description": "Close application via WM_CLOSE",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "pid_check",
+        "window_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "ctl.test",
+      "name": "Test Application Launch",
+      "description": "Full test: launch, verify focus, close",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_key"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "launch",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "native_cli",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "full_lifecycle"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/safe_gui_ctl.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.restore_focus",
+      "name": "Restore and Focus Window",
+      "description": "Restore minimized window and bring to foreground",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pid"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "focused": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "foreground_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.click_window_center",
+      "name": "Click Window Center",
+      "description": "Real mouse click in window center (required for Win11 text input)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer"
+          },
+          "frac_y": {
+            "type": "number",
+            "default": 0.6
+          }
+        },
+        "required": [
+          "pid"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "cursor_position_check"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.85,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.set_clipboard",
+      "name": "Set Clipboard Text",
+      "description": "Set clipboard text via Win32 API",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 10000
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_readback"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.get_clipboard",
+      "name": "Get Clipboard Text",
+      "description": "Read clipboard text via Win32 API",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_readback"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.99,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.send_ctrl_v",
+      "name": "Send Ctrl+V",
+      "description": "Send Ctrl+V keystroke",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 2,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "clipboard_verify"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.send_ctrl_a",
+      "name": "Send Ctrl+A",
+      "description": "Send Ctrl+A keystroke (select all)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 2,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.send_ctrl_c",
+      "name": "Send Ctrl+C",
+      "description": "Send Ctrl+C keystroke (copy)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 2,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.send_delete",
+      "name": "Send Delete Key",
+      "description": "Send Delete keystroke",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "mouse_keyboard",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 2,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "win.click_discard_dialog",
+      "name": "Click Discard in Save Dialog",
+      "description": "Auto-click discard button in save prompts (Win32 and vision fallback)",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pid"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "clicked": {
+            "type": "boolean"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "interact",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [
+        "dialog_disappeared",
+        "process_gone"
+      ],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/win_app_ops.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "vision.capture_region",
+      "name": "Capture Screen Region",
+      "description": "Capture specific screen region",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "object",
+            "properties": {
+              "left": {
+                "type": "integer"
+              },
+              "top": {
+                "type": "integer"
+              },
+              "right": {
+                "type": "integer"
+              },
+              "bottom": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "left",
+              "top",
+              "right",
+              "bottom"
+            ]
+          }
+        },
+        "required": [
+          "region"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          }
+        }
+      },
+      "capabilities": [
+        "capture"
+      ],
+      "supported_applications": [],
+      "backend": "screenshot_vision",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/vision_layer.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "vision.find_element",
+      "name": "Find Element Coordinates",
+      "description": "Find element coordinates via vision model",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "region": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "description"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "confidence": {
+            "type": "number"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect",
+        "verify"
+      ],
+      "supported_applications": [],
+      "backend": "screenshot_vision",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 30,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "partial",
+      "reliability_score": 0.6,
+      "source_file": "lib/vision_layer.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.find_window",
+      "name": "Find Window via UIA",
+      "description": "Find window by title, class, process_id, or path",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "class_name": {
+            "type": "string"
+          },
+          "process_id": {
+            "type": "integer"
+          },
+          "process_name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "auto_id": {
+            "type": "string"
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "found": {
+            "type": "boolean"
+          },
+          "window": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.find_element",
+      "name": "Find Element in Window",
+      "description": "Find UI element by auto_id, control_type, title, etc.",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object"
+          },
+          "auto_id": {
+            "type": "string"
+          },
+          "control_type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "class_name": {
+            "type": "string"
+          },
+          "found_index": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "window"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "found": {
+            "type": "boolean"
+          },
+          "element": {
+            "type": "object"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.88,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.invoke_element",
+      "name": "Invoke UI Element",
+      "description": "Invoke element action (click button, etc.) via UIA",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object"
+          },
+          "auto_id": {
+            "type": "string"
+          },
+          "control_type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "medium",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.85,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.type_text",
+      "name": "Type Text via UIA",
+      "description": "Type text into edit control via UIA",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object"
+          },
+          "auto_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 10000
+          }
+        },
+        "required": [
+          "window",
+          "auto_id",
+          "text"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 10,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.get_text",
+      "name": "Get Text via UIA",
+      "description": "Read text from UI element",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object"
+          },
+          "auto_id": {
+            "type": "string"
+          },
+          "control_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "capabilities": [
+        "inspect"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.95,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    },
+    {
+      "tool_id": "uia.set_focus",
+      "name": "Set Focus via UIA",
+      "description": "Set focus to UI element",
+      "version": "1.0.0",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object"
+          },
+          "auto_id": {
+            "type": "string"
+          },
+          "control_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "capabilities": [
+        "interact"
+      ],
+      "supported_applications": [],
+      "backend": "windows_uia",
+      "platform": [
+        "windows"
+      ],
+      "permissions": [],
+      "dependencies": [],
+      "risk_level": "low",
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "idempotent": false,
+      "verification_methods": [],
+      "rollback_capable": false,
+      "test_status": "verified",
+      "reliability_score": 0.9,
+      "source_file": "lib/element_locator.py",
+      "created_at": "2026-10-31T01:50:55.956793",
+      "updated_at": "2026-10-31T01:50:55.956793"
+    }
+  ]
+}

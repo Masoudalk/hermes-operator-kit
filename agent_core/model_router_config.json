@@ -1,0 +1,69 @@
+{
+  "roles": {
+    "planning": {
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "temperature": 0.3,
+      "max_tokens": 4000,
+      "fallback": [
+        "nvidia/ising-calibration-1.5-31b"
+      ]
+    },
+    "coding": {
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "temperature": 0.2,
+      "max_tokens": 8000,
+      "fallback": [
+        "nemotron-3-ultra-550b",
+        "gpt-oss-20b"
+      ]
+    },
+    "vision": {
+      "provider": "nvidia",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "temperature": 0.1,
+      "max_tokens": 2000,
+      "fallback": [
+        "ising-calibration-1.5-31b"
+      ]
+    },
+    "verification": {
+      "provider": "nvidia",
+      "model": "nvidia/ising-calibration-1.5-31b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "temperature": 0.0,
+      "max_tokens": 500,
+      "fallback": [
+        "nemotron-3-ultra-550b"
+      ]
+    },
+    "fast": {
+      "provider": "nvidia",
+      "model": "nvidia/ising-calibration-1.5-31b",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "temperature": 0.0,
+      "max_tokens": 1000,
+      "fallback": [
+        "gpt-oss-20b"
+      ]
+    },
+    "research": {
+      "provider": "custom",
+      "model": "nemotron-3.5-super-vl-120b-a12b",
+      "base_url": "http://127.0.0.1:20128/v1",
+      "temperature": 0.3,
+      "max_tokens": 4000,
+      "fallback": [
+        "gemini-3.6-flash"
+      ]
+    }
+  },
+  "defaults": {
+    "timeout": 120,
+    "max_retries": 3
+  }
+}

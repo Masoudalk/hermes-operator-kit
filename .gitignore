@@ -9,8 +9,12 @@ __pycache__/
 
 # Hermes runtime
 .hermes/
-tmp/
-logs/
+
+# Logs and tmp at root - track directories but ignore contents
+/logs/
+!/logs/.gitkeep
+/tmp/
+!/tmp/.gitkeep
 
 # Backups
 *.bak-*
@@ -23,3 +27,24 @@ logs/
 # Local state
 dist/
 *.zip
+
+# Personal data - NOT tracked (each user gets their own from templates)
+.env
+memory/HANDOFF.md
+memory/last_launched_apps.txt
+memory/gh_login_output.txt
+memory/*.archive-*.md
+memory/PHASE1_AUDIT.md
+memory/SELF_IMPROVEMENT_AUDIT.md
+memory/install_ps1_*.ps1
+
+# Personal repos - NOT tracked
+brain/
+projects/
+operator/
+
+# Test files - local development only
+test_notepad_*.py
+tests/demo_*.py
+tests/test_calculator_circuit.py
+tests/test_universal.py
